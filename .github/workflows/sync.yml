@@ -1,0 +1,35 @@
+name: Sync formula
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [teknap-release]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch formula from e-jerk/teknap
+        run: |
+          mkdir -p Formula
+          curl -fsSL https://raw.githubusercontent.com/e-jerk/teknap/main/Formula/teknap.rb \
+            -o Formula/teknap.rb
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/teknap.rb
+          if git diff --cached --quiet; then
+            echo "formula already current"
+            exit 0
+          fi
+          git commit -m "sync teknap formula from e-jerk/teknap"
+          git push
