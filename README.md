@@ -7,3 +7,5 @@ brew tap e-jerk/teknap
 brew install teknap
 teknap -v
 ```
+
+Each TekNap `v*.*.*` release updates this formula (version + bottle SHA). The hourly sync is only a backup.

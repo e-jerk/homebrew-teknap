@@ -1,5 +1,7 @@
 name: Sync formula
 
+# Backup if the release job cannot reach this tap. Releases should push the
+# formula directly from e-jerk/teknap `.github/workflows/release.yml`.
 on:
   schedule:
     - cron: "17 * * * *"
