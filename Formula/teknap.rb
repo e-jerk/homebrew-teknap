@@ -1,15 +1,16 @@
 class Teknap < Formula
   desc "OpenNap / Napster client (naps/1 and ircs-u)"
   homepage "https://github.com/e-jerk/teknap"
-  version "2.0.0"
+  version "2.1.0"
   license "Unlicense"
 
   depends_on "openssl@3"
+  depends_on "gnupg"
 
   on_macos do
     on_arm do
       url "https://github.com/e-jerk/teknap/releases/download/v#{version}/teknap-#{version}-darwin-arm64.tar.gz"
-      sha256 "c5f1a13a5bd9bdfcfbd58e2e1f2edfa34b88cf1e77ad45a80b433953abd21003"
+      sha256 "7cfd094eeb17f2588fc95438fdf70468aa2467d6bfdbd7ca498ab3b31cfa7586"
     end
   end
 
